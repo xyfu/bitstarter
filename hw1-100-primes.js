@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var fs = require('fs');
-var outfile = "primes-in-100.txt";
+var outfile = "first-100-primes.txt";
 var primes = [];
-var max = 100;
+var MAX = 100;
 var i = 1,
     p = 0;
 var isPrime = false;
@@ -20,11 +20,11 @@ while(++i)
 	if (isPrime)
 	{
 		primes.push(i);
-		if (primes.length>=100)
+		if (primes.length>=MAX)
 			break;
 	}
 }
 
 fs.writeFileSync(outfile, primes.join(","));
 
-console.log("primes in 100: \n" + primes.join(","));
+console.log("first 100 primes: \n" + primes.join(","));
