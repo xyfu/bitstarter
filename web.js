@@ -7,7 +7,7 @@ var pageIndex = "";
 pageIndex = fs.readFileSync("index.html");
 
 http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.writeHead(200, {"Content-Type": "text/html"});
   response.write(pageIndex);
   response.end();
 }).listen(port);
