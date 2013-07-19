@@ -17,25 +17,6 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
-var cheerioHtmlFile = function(htmlfile) {
-    return cheerio.load(fs.readFileSync(htmlfile));
-};
-
-var loadChecks = function(checksfile) {
-    return JSON.parse(fs.readFileSync(checksfile));
-};
-
-var checkHtmlFile = function(htmlfile, checksfile) {
-    $ = cheerioHtmlFile(htmlfile);
-    var checks = loadChecks(checksfile).sort();
-    var out = {};
-    for(var ii in checks) {
-        var present = $(checks[ii]).length > 0;
-        out[checks[ii]] = present;
-    }
-    return out;
-};
-
 var checkHtmlString = function(str, checksfile) {
     $ = cheerio.load(str);
     var checks = JSON.parse(fs.readFileSync(checksfile));
@@ -78,5 +59,6 @@ if(require.main == module) {
     else
         loadFileAndCheck(program.file, program.checks);
  } else {
-    exports.checkHtmlFile = checkHtmlFile;
+    exports.loadFileAndCheck = loadFileAndCheck;
+    exports.loadURLAndCheck = loadURLAndCheck;
 }
